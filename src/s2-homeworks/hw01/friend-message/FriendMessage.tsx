@@ -17,20 +17,20 @@ const FriendMessage = (props: FrendsMessageType) => {
             <div className={s.friendImageAndText}>
                 <img
                     id={'hw1-friend-avatar-' + props.message.id}
-                src={image}
+                src={props.message.user.avatar}
                 />
                 <div className={s.friendText}>
                     <div
                         id={'hw1-friend-name-' + props.message.id}
                         className={s.friendName}
                     >
-                        <span>Ivan</span>
+                        {props.message.user.name}
                     </div>
                     <pre
                         id={'hw1-friend-text-' + props.message.id}
                         className={s.friendMessageText}
                     >
-                        <span>Hello, how are you, what did you do yesterday?</span>
+                       {props.message.message.text}
                     </pre>
                 </div>
             </div>
@@ -38,7 +38,8 @@ const FriendMessage = (props: FrendsMessageType) => {
                 id={'hw1-friend-time-' + props.message.id}
                 className={s.friendTime}
             >
-                <Moment format='HH:mm' interval={1000} />
+                {props.message.message.time}
+                {/* <Moment format='HH:mm' interval={1000} /> */}
             </div>
         </div>
     )

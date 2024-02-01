@@ -4,6 +4,7 @@
     font-size: 14px;
     padding: 12px 20px;
     width: 100%;
+    height: auto;
     max-width: fit-content;
     display: flex;
     justify-content: center;
@@ -17,21 +18,20 @@
     margin-right: 60px;
 
 }
+
 .message::before {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 94.5%;
-    margin: auto 0;
+    right: -10px;
     border: 17px solid transparent;
     border-left: 24px solid #0066CC;
     border-bottom: 15px solid #0066CC;
     z-index: -1;
-}
-
-.imageAndText {
 
 }
+
+.imageAndText {}
 
 .imageAndText img {
     width: 48px;
@@ -42,22 +42,18 @@
 }
 
 .text {
- color: white ;
-}
-
-.text:after {
-
+    color: white;
 }
 
 .name {
-    color: white ;
+    color: white;
     font-size: 18px;
     font-weight: 600;
     font-family: 'Montserrat';
 }
 
 .messageText {
-    color: white ;
+    color: white;
     font-family: 'Montserrat';
     font-size: 16px;
     font-weight: 400;
@@ -68,6 +64,6 @@
     font-weight: 600;
     font-family: 'Montserrat';
     position: absolute;
-    right: -48px;
+    right: -50px;
     bottom: -18px;
 }

@@ -21,8 +21,7 @@
     content: '';
     position: absolute;
     bottom: 0;
-    right: 93.5%;
-    margin: auto 0;
+    left: -10px;
     border: 17px solid transparent;
     border-right: 24px solid #F5F7FB;
     border-bottom: 15px solid #F5F7FB;
@@ -39,10 +38,7 @@
     bottom: 0;
 }
 
-.friendText{
-    
-    
-}
+.friendText {}
 
 .friendText:after {}
 
@@ -63,6 +59,6 @@
     font-family: 'Montserrat';
     font-weight: 600;
     position: absolute;
-    left: -48px;
+    left: -50px;
     bottom: -18px;
 }
