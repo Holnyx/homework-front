@@ -2,8 +2,6 @@
     --header_height: 60px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
     /* background-color: black; */
 }
@@ -13,10 +11,12 @@
     border-top: 1px solid #D9D9D9;
     padding: 25px 0 25px 0;
     margin-top: 10px;
+    padding: 50px;
 }
 
 .hwTitle {
     font-size: 22px;
     font-weight: 600;
     font-family: 'Montserrat';
+    padding: 40px 0 0 50px
 }

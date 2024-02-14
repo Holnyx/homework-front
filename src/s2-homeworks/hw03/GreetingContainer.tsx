@@ -3,51 +3,55 @@ import Greeting from './Greeting'
 import { UserType } from './HW3'
 
 type GreetingContainerPropsType = {
-    users: any // need to fix any
-    addUserCallback: any // need to fix any
+    users: UserType[] // need to fix any
+    addUserCallback: (name: string) => void  // need to fix any
 }
 
-export const pureAddUser = (name: any, setError: any, setName: any, addUserCallback: any) => {
-    // если имя пустое - показать ошибку, иначе - добавить юзера и очистить инпут
+type SetErrorFunction = (error: string) => void
+type SetNameFunction = (name: string) => void
+type addUserCallback = (name: string) => void
+
+export const pureAddUser = (name: string, setError: SetErrorFunction, setName: SetNameFunction, addUserCallback: addUserCallback) => {
+    return name.trim() === '' ? setError('Ошибка! Введите имя!') : (setName(''), addUserCallback(name.trim()))
 }
 
-export const pureOnBlur = (name: any, setError: any) => { // если имя пустое - показать ошибку
+export const pureOnBlur = (name: string, setError: any) => {
+    return name.trim() === '' ? setError('Ошибка! Введите имя!') : '' // если имя пустое - показать ошибку
 }
 
-export const pureOnEnter = (e: any, addUser: any) => { // если нажата кнопка Enter - добавить
+export const pureOnEnter = (e: KeyboardEvent<HTMLInputElement>, addUser: (name: string) => void) => {
+    e.key === 'Enter' && addUser(e.currentTarget?.value.trim());
 }
 
-// более простой и понятный для новичков
-// function GreetingContainer(props: GreetingPropsType) {
-
-// более современный и удобный для про :)
 const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
     users,
     addUserCallback,
 }) => {
-    // деструктуризация пропсов
-    const [name, setName] = useState<any>('') // need to fix any
-    const [error, setError] = useState<any>('') // need to fix any
+    const [name, setName] = useState<string>('') 
+    const [error, setError] = useState<string>('') 
+    const [count, setCount] = useState(0)
+    // const [lastUserName, setLastUserName] = useState('')
 
-    const setNameCallback = (e: any) => { // need to fix any
-        setName('some name') // need to fix
-
+    const setNameCallback = (e: ChangeEvent<HTMLInputElement>) => {
         error && setError('')
+        setName(e.currentTarget.value)
     }
-    const addUser = () => {
+    const addUser = (name: string) => {
         pureAddUser(name, setError, setName, addUserCallback)
+        name !== '' && setCount(count + 1)
+        // setLastUserName(name)
     }
 
     const onBlur = () => {
         pureOnBlur(name, setError)
     }
 
-    const onEnter = (e: any) => {
+    const onEnter = (e: KeyboardEvent<HTMLInputElement>) => {
         pureOnEnter(e, addUser)
     }
 
-    const totalUsers = 0 // need to fix
-    const lastUserName = 'some name' // need to fix
+    // const totalUsers = count // need to fix
+    const lastUserName = users.length > 0 ? users[users.length - 1].name : '' // need to fix
 
     return (
         <Greeting
@@ -57,7 +61,7 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
             onBlur={onBlur}
             onEnter={onEnter}
             error={error}
-            totalUsers={totalUsers}
+            totalUsers={count}
             lastUserName={lastUserName}
         />
     )
