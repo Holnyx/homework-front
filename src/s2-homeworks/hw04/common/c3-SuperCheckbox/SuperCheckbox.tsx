@@ -12,10 +12,12 @@ type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElem
 type SuperCheckboxPropsType = Omit<DefaultInputPropsType, 'type'> & {
     onChangeChecked?: (checked: boolean) => void
     spanClassName?: string
+    setChecked?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
     {
+        setChecked,
         onChange,
         onChangeChecked,
         className,
@@ -27,8 +29,7 @@ const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
     }
 ) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        // задачка на написание онченджа
-
+        setChecked?.(e.currentTarget.checked) // задачка на написание онченджа
     }
 
     const finalInputClassName = s.checkbox

@@ -12,7 +12,14 @@ type SetNameFunction = (name: string) => void
 type addUserCallback = (name: string) => void
 
 export const pureAddUser = (name: string, setError: SetErrorFunction, setName: SetNameFunction, addUserCallback: addUserCallback) => {
-    return name.trim() === '' ? setError('Ошибка! Введите имя!') : (setName(''), addUserCallback(name.trim()))
+    if (name.trim() === '') {
+        setError('Ошибка! Введите имя!')
+    }
+    else {
+        addUserCallback(name.trim())
+        setName('')
+    }
+
 }
 
 export const pureOnBlur = (name: string, setError: any) => {
@@ -27,9 +34,9 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
     users,
     addUserCallback,
 }) => {
-    const [name, setName] = useState<string>('') 
-    const [error, setError] = useState<string>('') 
-    const [count, setCount] = useState(0)
+    const [name, setName] = useState<string>('')
+    const [error, setError] = useState<string>('')
+    // const [count, setCount] = useState(0)
     // const [lastUserName, setLastUserName] = useState('')
 
     const setNameCallback = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +45,7 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
     }
     const addUser = (name: string) => {
         pureAddUser(name, setError, setName, addUserCallback)
-        name !== '' && setCount(count + 1)
+        // name !== '' && setCount(count + 1)
         // setLastUserName(name)
     }
 
@@ -50,7 +57,7 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
         pureOnEnter(e, addUser)
     }
 
-    // const totalUsers = count // need to fix
+    const totalUsers = users.length // need to fix
     const lastUserName = users.length > 0 ? users[users.length - 1].name : '' // need to fix
 
     return (
@@ -61,7 +68,7 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
             onBlur={onBlur}
             onEnter={onEnter}
             error={error}
-            totalUsers={count}
+            totalUsers={totalUsers}
             lastUserName={lastUserName}
         />
     )
