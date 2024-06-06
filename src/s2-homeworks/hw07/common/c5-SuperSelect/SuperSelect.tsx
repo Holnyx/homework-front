@@ -5,6 +5,7 @@ import React, {
 } from 'react'
 import s from './SuperSelect.module.css'
 
+
 type DefaultSelectPropsType = DetailedHTMLProps<
     SelectHTMLAttributes<HTMLSelectElement>,
     HTMLSelectElement
@@ -28,7 +29,7 @@ const SuperSelect: React.FC<SuperSelectPropsType> = ({
                 id={'hw7-option-' + o.id}
                 className={s.option}
                 key={o.id}
-                value={o.value}
+                value={o.id}
             >
                 {o.value}
             </option>
@@ -36,9 +37,9 @@ const SuperSelect: React.FC<SuperSelectPropsType> = ({
         : [] // map options with key
 
     const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>) => {
-        onChange && onChange(e);
-        const selectedOption = e.target.value
-        onChangeOption && onChangeOption(selectedOption);
+        // onChange && onChange(e);
+        onChangeOption && onChangeOption(e.currentTarget.value);
+        console.log(e.currentTarget.value)
     }
 
     const finalSelectClassName = s.select + (className ? ' ' + className : '')
