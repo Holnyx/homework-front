@@ -1,0 +1,14 @@
+.select {
+    width: 165px;
+    padding: 2px 10px;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17.07px;
+    text-align: left;
+}
+
+.select:focus {}
+
+
+.option:hover {}

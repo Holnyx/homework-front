@@ -1,0 +1,44 @@
+.loader {
+    display: flex;
+    position: relative;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: #fff
+}
+
+.loader::after,
+.loader::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    translate: -50% -50%;
+    height: 100%;
+    width: 100%;
+    padding: 9px;
+    border-radius: 50%;
+    background-image: conic-gradient(from var(--angle), #512DE4 26%, #6544eb98 50%, rgba(255, 255, 255, 0) 74%);
+    animation: 10s spin linear infinite;
+}
+
+.loader::before {
+    /* filter: blur(1.5rem); */
+    opacity: 0.5
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes spin {
+    from {
+        --angle: 360deg;
+    }
+    to {
+        --angle: 0deg;
+    }
+}
