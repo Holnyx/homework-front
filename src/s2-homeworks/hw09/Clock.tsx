@@ -34,13 +34,16 @@ function Clock() {
     const onMouseLeave = () => { // пишут студенты // спрятать дату если мышка не наведена
         setShow(false)
     }
-    const currentDate = date;
-    const formattedDate = currentDate.toLocaleDateString();
-    const monthName = currentDate.toLocaleString('en-US', { month: 'long' });
+    const monthName = date.toLocaleString('en-US', { month: 'long' });
 
-    const stringTime = currentDate.toTimeString().slice(0, 8) || <br /> // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
-    const stringDate = formattedDate || <br /> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
-    const stringDay = currentDate.toLocaleString('en-US', { weekday: 'long' }) || <br /> // пишут студенты
+    const stringTime = date.toTimeString().slice(0, 8) || <br /> // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
+    const stringDate = date.toLocaleDateString('ru-Ru', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    })
+        || <br /> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
+    const stringDay = date.toLocaleString('en-US', { weekday: 'long' }) || <br /> // пишут студенты
     const stringMonth = monthName || <br /> // пишут студенты
 
     return (
